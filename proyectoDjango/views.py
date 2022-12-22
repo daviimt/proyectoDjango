@@ -4,7 +4,7 @@ from django.template import Template, Context
 
 def HolaMundo(request): #primera vista
 
-    doc_externo=open("C:/Users/ruben/OneDrive/Escritorio/2DAM/PSP/UD4/proyectoDjango/proyectoDjango/plantillas/holamundo.html")
+    doc_externo=open("C:/Users/ruben/OneDrive/Escritorio/2DAM/PSP/UD4/proyectoDjango/proyectoDjango/plantillas/html/holamundo.html")
 
     plt=Template(doc_externo.read())
     doc_externo.close()
@@ -17,7 +17,7 @@ def HolaMundo(request): #primera vista
 def fecha(request):
     fecha_actual=datetime.datetime.now()
 
-    doc_externo=open("C:/Users/ruben/OneDrive/Escritorio/2DAM/PSP/UD4/proyectoDjango/proyectoDjango/plantillas/fecha.html")
+    doc_externo=open("C:/Users/ruben/OneDrive/Escritorio/2DAM/PSP/UD4/proyectoDjango/proyectoDjango/plantillas/html/fecha.html")
 
     plt=Template(doc_externo.read())
     doc_externo.close()
@@ -31,7 +31,7 @@ def calculoEdad(request, edad, year):
     edadFutura=edad+year
     yearFuturo= 2023+year
 
-    doc_externo=open("C:/Users/ruben/OneDrive/Escritorio/2DAM/PSP/UD4/proyectoDjango/proyectoDjango/plantillas/calcularEdad.html")
+    doc_externo=open("C:/Users/ruben/OneDrive/Escritorio/2DAM/PSP/UD4/proyectoDjango/proyectoDjango/plantillas/html/calcularEdad.html")
 
     plt=Template(doc_externo.read())
     doc_externo.close()
