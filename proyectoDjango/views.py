@@ -30,12 +30,26 @@ def Trabajo(request):
     nombre3="David"
     ahora=datetime.datetime.now()
 
-    doc_externo=open("proyectoDjango\plantillas\html\trabajo.html")
+    doc_externo=open("proyectoDjango\plantillas\html\\trabajo.html")
 
     plt=Template(doc_externo.read())
     doc_externo.close()
 
     ctx=Context({"nombre_componente1":nombre1, "nombre_componente2":nombre2, "nombre_componente3":nombre3, "momento":ahora})
+    documento=plt.render(ctx)
+    
+    return HttpResponse(documento)
+
+def Lenguajes(request):
+
+    lista=["Python","Java","Flutter","PHP","HTML"]
+
+    doc_externo=open("proyectoDjango\plantillas\html\lenguajes.html")
+
+    plt=Template(doc_externo.read())
+    doc_externo.close()
+
+    ctx=Context({"lenguajes":lista})
     documento=plt.render(ctx)
     
     return HttpResponse(documento)
