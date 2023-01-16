@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
-from django.template import loader 
+from django.template.loader import get_template
+from django.template import loader
+from django.shortcuts import render 
 
 class Persona(object):
 
@@ -14,12 +16,7 @@ def HolaProfesor(request):
     p1=Persona("Rafa","Montero")
     ahora=datetime.datetime.now()
     lista=["Python","Java","Flutter","PHP","HTML"]
-
-    doc_externo=loader.get_template('holaprofesor.html')
-
-    documento=doc_externo.render({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "lenguajes":lista})
-    
-    return HttpResponse(documento)
+    return render(request, 'holaprofesor.html',{"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "lenguajes":lista})
 
 def Trabajo(request):
 
@@ -27,12 +24,7 @@ def Trabajo(request):
     nombre2="Marta"
     nombre3="David"
     ahora=datetime.datetime.now()
-
-    doc_externo=loader.get_template('trabajo.html')
-
-    documento=doc_externo.render({"nombre_componente1":nombre1, "nombre_componente2":nombre2, "nombre_componente3":nombre3, "momento":ahora})
-    
-    return HttpResponse(documento)
+    return render(request, 'trabajo.html',{"nombre_componente1":nombre1, "nombre_componente2":nombre2, "nombre_componente3":nombre3, "momento":ahora})
 
 
 def HolaMundo(request): #primera vista
