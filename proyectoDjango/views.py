@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
+from django.template import loader 
 
 class Persona(object):
 
@@ -12,14 +13,11 @@ def HolaProfesor(request):
 
     p1=Persona("Rafa","Montero")
     ahora=datetime.datetime.now()
+    lista=["Python","Java","Flutter","PHP","HTML"]
 
-    doc_externo=open("proyectoDjango\plantillas\html\holaprofesor.html")
+    doc_externo=loader.get_template('holaprofesor.html')
 
-    plt=Template(doc_externo.read())
-    doc_externo.close()
-
-    ctx=Context({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido})
-    documento=plt.render(ctx)
+    documento=doc_externo.render({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "lenguajes":lista})
     
     return HttpResponse(documento)
 
@@ -30,51 +28,28 @@ def Trabajo(request):
     nombre3="David"
     ahora=datetime.datetime.now()
 
-    doc_externo=open("proyectoDjango\plantillas\html\\trabajo.html")
+    doc_externo=loader.get_template('trabajo.html')
 
-    plt=Template(doc_externo.read())
-    doc_externo.close()
-
-    ctx=Context({"nombre_componente1":nombre1, "nombre_componente2":nombre2, "nombre_componente3":nombre3, "momento":ahora})
-    documento=plt.render(ctx)
+    documento=doc_externo.render({"nombre_componente1":nombre1, "nombre_componente2":nombre2, "nombre_componente3":nombre3, "momento":ahora})
     
     return HttpResponse(documento)
 
-def Lenguajes(request):
-
-    lista=["Python","Java","Flutter","PHP","HTML"]
-
-    doc_externo=open("proyectoDjango\plantillas\html\lenguajes.html")
-
-    plt=Template(doc_externo.read())
-    doc_externo.close()
-
-    ctx=Context({"lenguajes":lista})
-    documento=plt.render(ctx)
-    
-    return HttpResponse(documento)
 
 def HolaMundo(request): #primera vista
-    doc_externo=open("proyectoDjango\plantillas\html\holamundo.html")
+    doc_externo=loader.get_template('holamundo.html')
 
-    plt=Template(doc_externo.read())
-    doc_externo.close()
-
-    ctx=Context()
-    documento=plt.render(ctx)
+    documento=doc_externo.render()
     
     return HttpResponse(documento)
 
 def fecha(request):
     fecha_actual=datetime.datetime.now()
 
-    doc_externo=open("proyectoDjango\plantillas\html\\fecha.html")
-
-    plt=Template(doc_externo.read())
-    doc_externo.close()
+    doc_externo=loader.get_template('fecha.html')
 
     ctx=Context({"ahora":fecha_actual})
-    documento=plt.render(ctx)
+
+    documento=doc_externo.render()
 
     return HttpResponse(documento)
 
@@ -82,14 +57,9 @@ def calculoEdad(request, edad, year):
     edadFutura=edad+year
     yearFuturo= 2023+year
 
-    doc_externo=open("proyectoDjango\plantillas\html\calcularEdad.html")
+    doc_externo=loader.get_template('calcularEdad.html')
 
-    plt=Template(doc_externo.read())
-    doc_externo.close()
-
-    ctx=Context({"proximaEdad":edadFutura, "proximoYear":yearFuturo})
-
-    documento=plt.render(ctx)
+    documento=doc_externo.render({"proximaEdad":edadFutura, "proximoYear":yearFuturo})
 
     return HttpResponse(documento)
     

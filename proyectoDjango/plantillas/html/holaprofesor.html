@@ -37,8 +37,38 @@
         </nav>
         <!-- Page content-->
         <div class="container">
-            <div class="text-center mt-5">
+            <div>
+                <br>
                 <h1 style="color:darkslateblue;">El nombre del profesor es: {{nombre_persona}} {{apellido_persona}}</h1>
+                {% if nombre_persona == 'Rafa' %}
+                    <p>El curso lo imparte el profesor titular</p>
+                {% else %}
+                    <p>El curso lo imparte el profesor suplente</p>
+                {% endif %}
+                <p><strong>Lenguajes aprendidos:</strong></p>
+                <p>
+                    <ul>
+                    {% if lenguajes%}
+                        {% for l in lenguajes%}
+                            <li>{{l}}</li>
+                        {% endfor %}
+                    {% else %}
+                        <p><i>No hay elementos que mostrar</i></p>
+                    {% endif %}
+                    </ul>
+                </p>
+                <p><strong>Primer letra de cada lenguaje:</strong></p>
+                <p>
+                    <ul>
+                    {% if lenguajes%}
+                        {% for l in lenguajes%}
+                            <li>{{l|first|lower}}</li>
+                        {% endfor %}
+                    {% else %}
+                        <p><i>No hay elementos que mostrar</i></p>
+                    {% endif %}
+                    </ul>
+                </p>
             </div>
         </div>
         <!-- Bootstrap core JS-->
